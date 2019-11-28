@@ -1,0 +1,76 @@
+
+   
+/************GENERAL LAYOUT ************/
+    .calendarPage {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .calendarComponent {
+        height: 80%;
+        width: 60%;
+    }
+
+    .calendarDetails {
+        margin-left: 10px;
+    }
+
+
+
+
+
+/*********Calendar Header********/
+.calenderHeader {
+    text-align: center;
+}
+    .calendarPicker {
+        display: flex;
+        justify-content: space-around;
+        font-weight: bolder;
+        color:var(--bright-pink);
+        font-size: 1.5rem;
+    }
+
+    .dayNameRow {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .dayName {
+        width: calc(100% / 7);
+    }
+
+    .dateSquareRow {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .dateSquare {
+        width: calc(100% / 7);
+        /* min-height: 10vmax; */
+        border: 1px solid var(--black);
+        padding: 5px;
+        background-color: var(--off-white);
+    }
+
+    .activeDateSquare {
+        background-color: var(--active-blue);
+    }
+
+    .eventList {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .eventItem {
+        border-radius: 5%;
+        margin: 5px;
+        padding-left: 5px;
+        background-color: var(--bright-pink);
+        display:block;
+    }
+
+    
