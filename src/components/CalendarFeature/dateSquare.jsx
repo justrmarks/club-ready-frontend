@@ -2,7 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { isSameDay, format, parseISO} from 'date-fns'
 import EventItem from './eventItem'
-import { selectDate} from '../../store/actions/calendar'
+import { selectDate, fetchEvents} from '../../store/actions/calendar'
+import {Button} from '@material-ui/core'
+
 
 
 /* 
@@ -30,7 +32,7 @@ const dateSquare = (props) => {
     return (<div className={"dateSquare" + activeClass} onClick={handleClick}>
         <span className="dateNumber">{formattedDate}</span>
         <ol className="eventList">
-            {eventItems}
+            {eventItems.length > 2 ? <> {eventItems.slice(0,2)} <Button className="showMore">...</Button></> : eventItems}
         </ol>
     </div>)
 
@@ -50,7 +52,9 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return { selectDate: (date) => dispatch(selectDate(date)) };
+    return { selectDate: (date) => {
+        dispatch(fetchEvents(date.getMonth()+1))
+        dispatch(selectDate(date))} };
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(dateSquare)

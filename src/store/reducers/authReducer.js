@@ -1,4 +1,4 @@
-const authReducer = (state = { currentUser: null , requesting: false }, action) => {
+const authReducer = (state = { currentUser: null , requesting: true }, action) => {
   switch (action.type) {
     case "FETCH_AUTH":
       return {
@@ -14,9 +14,14 @@ const authReducer = (state = { currentUser: null , requesting: false }, action) 
         requesting: false
       };
 
+    case "CLEAR_AUTH":
+      return {
+        ...state,
+        currentUser: null
+      }
+
     default:
-      return {...state,
-      requesting: false
+      return {...state
     }
   }
 };

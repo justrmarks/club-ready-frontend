@@ -31,12 +31,13 @@ class CalendarPage extends Component {
 
 const mapStateToProps = state => {
   return {
-      events: state.events 
+      events: state.events,
+      selectedDate: state.selectedDate 
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return { fetchEvents: (year) => dispatch(fetchEvents(year)) };
+    return { fetchEvents: (month) => dispatch(fetchEvents(month)) };
   };
 
 

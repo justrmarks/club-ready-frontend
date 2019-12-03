@@ -1,0 +1,25 @@
+.eventCreateForm {
+    display: flex;
+    flex-direction: column;
+  
+    align-items: center;
+    justify-content: space-around;
+}
+
+.eventCreateForm div {
+    margin: 5px;
+}
+
+.accessiblitySelect  {
+    display: flex;
+    flex-direction: column;
+}
+
+.accessiblitySelect .selectComponent {
+    margin:10px;
+}
+
+.ImageField {
+    width: 50%;
+}
+

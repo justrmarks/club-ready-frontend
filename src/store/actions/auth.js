@@ -11,10 +11,10 @@ export const setCurrentUser = currentUser => ({ type: SET_AUTH, currentUser });
 export const login = (email, password) => {
   return async dispatch => {
     try {
+      console.log(email,password)
       const reqObj = {
         method: 'POST',
-        headers: { 'Content-Type' : 'application/json'
-        },
+        headers: { 'Content-Type' : 'application/json'},
         body: JSON.stringify({
             user: { 
                 email,
@@ -27,9 +27,9 @@ export const login = (email, password) => {
       const response = await fetch(LOGIN_API, reqObj);
       const authorization = response.headers.get('Authorization')
       localStorage.setItem(AUTH_TOKEN_NAME, authorization)
-      const user = await response.json();
+      const json = await response.json();
     
-      dispatch(setCurrentUser(user));
+      dispatch(setCurrentUser(json.user));
 
     } catch (error) {
       console.error("Error fetching user:", error);
@@ -41,22 +41,34 @@ export const fetchCurrentUser = () => {
   return async dispatch => {
     try {
       const reqObj = {
-        method: 'GET',
         headers: { 'Content-Type' : 'application/json',
           Authorization: localStorage.getItem(AUTH_TOKEN_NAME)
         }
       }
 
       dispatch({type: FETCH_AUTH})
+      let json ={};
+      try{
       const response = await fetch(AUTH_API, reqObj);
-      const json = await response.json();
+      json = await response.json();
+      }
+      catch (error) {
+        console.log(error)
+        json.valid = false
+      }
       console.log(json)
       if (json.valid) {
         dispatch(setCurrentUser(json.current_user));
       }
 
     } catch (error) {
-      console.error("Error fetching user:", error);
+      console.log("Error fetching user:", error);
     }
   };
 };
+
+export const CLEAR_AUTH = "CLEAR_AUTH";
+
+export const logout = () => {
+  localStorage.removeItem(AUTH_TOKEN_NAME)
+  return {type: CLEAR_AUTH} }

@@ -1,20 +1,21 @@
-
+const AUTH_TOKEN_NAME = "project-sploopy authorization"
 const EVENTS_INDEX = 'http://localhost:3000/events'
+
 export const FETCH_EVENTS = "FETCH_EVENTS"
 export const SET_EVENTS = "SET_EVENTS"
 
 export const setEvents = events => ({ type: SET_EVENTS, events});
 
-export const fetchEvents = (year) => {
+export const fetchEvents = (month) => {
     return async dispatch => {
       try {
         const reqObj = {
           method: 'GET',
           headers: { 'Content-Type' : 'application/json',
-            Authorization: localStorage.getItem("authorization")
+            Authorization: localStorage.getItem(AUTH_TOKEN_NAME)
           }
         }
-        const events_endpoint = year ? `${EVENTS_INDEX}?year=${year}` : EVENTS_INDEX
+        const events_endpoint = month ? `${EVENTS_INDEX}?month=${month}` : EVENTS_INDEX
         
 
         dispatch({type: FETCH_EVENTS})
@@ -22,7 +23,6 @@ export const fetchEvents = (year) => {
         const json = await response.json();
         const events = json.events.map(event=> {
             let result = event.data.attributes;
-            result.attendees = result.attendees.map(att=> att.data.attributes) 
             return result;
         }
             )
@@ -35,6 +35,8 @@ export const fetchEvents = (year) => {
   };
 
   export const SELECT_DATE = "SELECT_DATE"
-  export const selectDate = date => ({ type: SELECT_DATE, date});
+  export const selectDate = date => {
+    return { type: SELECT_DATE, date} };
+    
 
   

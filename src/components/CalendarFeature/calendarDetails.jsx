@@ -19,7 +19,7 @@ const CalendarDetails = (props) => {
         enter: { x: 0, 
             transition: ({i})=>  ({delay: i * 200 }),
             opacity: 1 },
-        exit: { x: 50, opacity: 0 }
+        exit: { x: 100, opacity: 0 }
       });
 
 const events = props.events.map( (event, index)=> {
@@ -38,6 +38,7 @@ const events = props.events.map( (event, index)=> {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.Calendar);
     const events=  state.Calendar.events.filter(event=> {
         return isSameDay(parseISO(event.start_time), state.Calendar.selectedDate)
     }) 

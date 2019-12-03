@@ -1,5 +1,12 @@
-const calendarReducer = (state = { events: [], requesting: false, currentDate: new Date(), selectedDate: new Date() }, action) => {
-    switch (action.type) {
+import _ from 'lodash'
+
+
+const calendarReducer = (state = { events: [], requesting: true, currentDate: new Date(), selectedDate: new Date() }, action) => {
+  let newEvents;  
+  let index;
+  let event;
+  
+  switch (action.type) {
       case "FETCH_EVENTS":
         return {
           ...state,
@@ -9,7 +16,7 @@ const calendarReducer = (state = { events: [], requesting: false, currentDate: n
       case "SET_EVENTS":
         return {
           ...state,
-          events: action.events,
+          events: _.unionBy(state.events, action.events, 'id'),
           requesting: false
         };
       case "SELECT_DATE":
@@ -17,10 +24,38 @@ const calendarReducer = (state = { events: [], requesting: false, currentDate: n
           ...state,
           selectedDate: action.date
         }
+
+      case "ATTEND_EVENT":
+            newEvents = state.events.map(event => {
+              if (event.id == action.event.id) {
+                return action.event
+              }
+              else {
+              return event
+            }
+            })
+
+            return {
+                ...state,
+                events: newEvents
+            }
+      case "DELETE_ATTEND":
+          newEvents = state.events.map(event => {
+            if (event.id == action.event.id) {
+              return action.event
+            }
+            else {
+            return event
+          }
+          })
+
+          return {
+              ...state,
+              events: newEvents
+          }
   
       default:
-        return {...state,
-        requesting: false
+        return {...state
       }
     }
   };

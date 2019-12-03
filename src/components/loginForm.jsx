@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { login } from '../store/actions/auth'
 import { Redirect } from 'react-router-dom'
+import { connect} from 'react-redux'
+import Button  from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 
 
 class LoginForm extends Component {
@@ -18,15 +21,24 @@ class LoginForm extends Component {
         })
     } 
 
-    render() {
-        if (this.props.loggedIn) {return <Redirect to='/' /> }  
-        
-        else { return <form onChange={this.handleChange}>
-                <label name="email">Email</label>
-                <input name="email" />
+    handleSubmit = (e) => {
+        e.preventDefault()
+        const password = e.target.password.value;
+        const email = e.target.email.value;
+        this.props.attemptLogin(email,password)
+        console.log("logged in", this.props.loggedIn)
+    }
 
-                <label name="password">Password</label>
-                <input name="password" />
+    render() {
+        if (this.props.loggedIn) {return <Redirect to='/calendar' /> }  
+        
+        else { return <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+              
+                <TextField id="email" label="Email" inputProps={{name: "email"}} required/>
+
+                
+                <TextField id="password" label="password" inputProps={{name: "password", type:"password"}} required/>
+                <Button type="submit">Login </Button>
             </form>}
     }
 
@@ -34,7 +46,7 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => {
     return {
-        loggedIn: !!state.auth.currentUser 
+        loggedIn: !!state.Auth.currentUser 
     };
   };
   

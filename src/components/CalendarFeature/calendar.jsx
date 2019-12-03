@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import DateSquareGrid from './dateSquareGrid'
 import CalendarHeader from './calendarHeader'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 
@@ -18,8 +19,8 @@ class Calendar extends Component {
     render () {
         return (
             <div className="calendarComponent" border="1x solid black">
-                <CalendarHeader date={this.props.date} />
-                <DateSquareGrid />
+                <CalendarHeader />
+                {this.props.requesting ? <CircularProgress className="calendarProgress"/> : <DateSquareGrid />}
             </div>
         )
     }
@@ -28,7 +29,8 @@ class Calendar extends Component {
 const mapStateToProps = (state)=> {
     return {
        events: state.Calendar.events,
-       date: state.Calendar.selectedDate
+       date: state.Calendar.selectedDate,
+       requesting: state.Calendar.requesting
     }
 }
 

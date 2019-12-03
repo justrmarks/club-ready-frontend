@@ -9,6 +9,7 @@ import rootReducer from "./store/reducers/rootReducer";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { createLogger } from "redux-logger";
+import 'semantic-ui-css/semantic.min.css'
 
 const logger = createLogger({ collapsed: true });
 

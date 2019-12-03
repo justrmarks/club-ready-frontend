@@ -15,6 +15,33 @@ body {
 
 
 /*****Layout and nav bar*****/
+.ActivePage {
+    height: 85vh;
+  }
+
+.header {
+    padding-left: 10px;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.navBar {
+    top: 0;
+    background-color: var(--bright-pink);
+    margin: 0;
+    padding: 5px;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.navLinkList {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    flex-direction: row;
+}
 
 .navLink {
     text-decoration: none;
@@ -22,13 +49,13 @@ body {
     transition: 200ms;
 }
 
-  .navLink:hover {
-    width: 100%;
-    color: var(--off-white)
+  .activeNavLink {
+      border: 1px dashed var(--off-white);
+      font-weight: bolder;
   }
 
-  .activeNavLink {
-      color: var(--off-white);
-      font-weight: bolder;
-      text-decoration: underline;
+ 
+
+  .navAuth {
+      align-self: flex-end;
   }
