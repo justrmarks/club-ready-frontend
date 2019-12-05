@@ -11,10 +11,12 @@ import TextField from '@material-ui/core/TextField'
 import dateTimeStyle from 'react-datetime/css/react-datetime.css'
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button'
+import moment from 'moment'
 
 import ImageFieldCropper from '../Util/ImageFieldCropper'
 
 import style from './EventCreateForm.css'
+import { createEvent} from '../../store/actions/event'
 
 
 
@@ -26,9 +28,9 @@ class EventCreateForm extends Component {
         start_time: new Date(),
         end_time: new Date(),
         location: "",
-        bathrooms: 0,
-        water: 0,
-        mobility: 0,
+        bathrooms: "no_bathrooms",
+        water: "no_water",
+        mobility: "inaccessible",
         flashing_lights: true,
         picture_file: null
     }
@@ -41,7 +43,6 @@ class EventCreateForm extends Component {
 
     handleChange = (e) => {
         const { checked, value, name } = e.target
-        console.log(e.target)
         if (e.target.type === 'checkbox') {
             this.setState({
                 [name]: checked
@@ -52,8 +53,6 @@ class EventCreateForm extends Component {
         this.setState({
             [name]: value
         }) }
-
-        console.log(this.state)
     } 
 
     handleStartDateChange = (moment) => {
@@ -77,18 +76,15 @@ class EventCreateForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-
-        // const data = new FormData();
-        // const request = new XMLHttpRequest();
-        // Object.keys(this.state).forEach(function (key) {
-        //     // console.log(this.state[item]); // value
-        // data.append(`event[${key}]`, this.state[key])
-        // });
-
-        // request.responseType = 'json';
-        
-
-        
+        const newEvent = this.state
+        console.log(newEvent)
+        if (moment.isMoment(newEvent.start_time)) {
+        newEvent.start_time = newEvent.start_time.format() }
+        if (moment.isMoment(newEvent.end_time)) {
+        newEvent.end_time = newEvent.end_time.format() }
+        console.log(newEvent)
+        this.props.createEvent(newEvent)
+        setTimeout(()=>this.props.history.push('/events/hosting'), 1000)
     }
 
     renderDateTimeInput = (props)=> {
@@ -100,7 +96,7 @@ class EventCreateForm extends Component {
             console.log("valid user",this.props.validUser)
             return <Redirect to='/calendar' /> }  
         
-        else { return <form onChange={this.handleChange} onSubmit={this.handleSubmit} className="eventCreateForm" style={style}>
+        else { return <div className="eventCreatePage"> <form onChange={this.handleChange} onSubmit={this.handleSubmit} className="eventCreateForm" style={style}>
             <h2> Add an event to the calendar </h2>
 
                 <div className="eventGeneralInfo">
@@ -127,11 +123,11 @@ class EventCreateForm extends Component {
                         value={this.state.bathrooms}
                         onChange={this.handleChange}
                         >
-                            <MenuItem value={0}>No bathrooms</MenuItem>
-                            <MenuItem value={1}>Porto-potties</MenuItem>
-                            <MenuItem value={2}>Single stalls</MenuItem>
-                            <MenuItem value={3}>Gendered Bathrooms only</MenuItem>
-                            <MenuItem value={4}>All Gender bathrooms</MenuItem>
+                            <MenuItem value={"no_bathrooms"}>No bathrooms</MenuItem>
+                            <MenuItem value={"portos"}>Porto-potties</MenuItem>
+                            <MenuItem value={"single_stalls"}>Single stalls</MenuItem>
+                            <MenuItem value={"gendered_bathrooms"}>Gendered Bathrooms only</MenuItem>
+                            <MenuItem value={"all_gender"}>All Gender bathrooms</MenuItem>
                         </Select>
                         <FormHelperText>What's the bathroom situation?</FormHelperText>
                     </FormControl>
@@ -144,9 +140,9 @@ class EventCreateForm extends Component {
                         value={this.state.water}
                         onChange={this.handleChange}
                         >
-                            <MenuItem value={0}>No water</MenuItem>
-                            <MenuItem value={1}>Water for sale</MenuItem>
-                            <MenuItem value={2}>Free Water</MenuItem>
+                            <MenuItem value={"no_water"}>No water</MenuItem>
+                            <MenuItem value={"water_for_sale"}>Water for sale</MenuItem>
+                            <MenuItem value={"free_water"}>Free Water</MenuItem>
                         </Select>
                         <FormHelperText>Is there water?</FormHelperText>
                     </FormControl>
@@ -158,16 +154,16 @@ class EventCreateForm extends Component {
                         value={this.state.mobility}
                         onChange={this.handleChange}
                         >
-                            <MenuItem value={0}>Not an accessibile space</MenuItem>
-                            <MenuItem value={1}>Partially accessible</MenuItem>
-                            <MenuItem value={2}>Wheelchair </MenuItem>
+                            <MenuItem value={"inaccessible"}>Not an accessibile space</MenuItem>
+                            <MenuItem value={"partially_accessible"}>Partially accessible</MenuItem>
+                            <MenuItem value={"wheelchair_accessible"}>Wheelchair accessibile</MenuItem>
                         </Select>
                         <FormHelperText>Is the space accessible for wheelchair users and others with disabilities?</FormHelperText>
                     </FormControl>
 
                     <FormControl className="selectComponent">
                         <FormControlLabel
-                        control={<Checkbox color="primary" onChange={this.handleChange} inputProps={{name: 'flashing_lights'}} />}
+                        control={<Checkbox color="primary" checked={this.state.flashing_lights} onChange={this.handleChange} inputProps={{name: 'flashing_lights'}} />}
                         label="Flashing lights?"
                         value="flashing_lights"
                         labelPlacement="end"
@@ -180,7 +176,7 @@ class EventCreateForm extends Component {
                 <ImageFieldCropper className="ImageField"fileInputName="picture_file" setPicture={this.setPicture} />
 
                 <Button style={{margin: '20px'}}variant="contained" type="submit">Create Event</Button>
-            </form>}
+            </form> </div>}
     }
 
 }
@@ -193,9 +189,15 @@ const mapStateToProps = state => {
         validUser: valid
     };
   };
+
+const mapDispatchToProps = dispatch => {
+    return {
+        createEvent: (event) => dispatch(createEvent(event))
+    }
+}
   
 //   const mapDispatchToProps = (dispatch) => {
 //       return { attemptLogin: (email, password) => dispatch(login(email,password)) };
 //     };
 
-export default connect(mapStateToProps)(EventCreateForm)
+export default connect(mapStateToProps, mapDispatchToProps)(EventCreateForm)

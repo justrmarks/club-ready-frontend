@@ -7,12 +7,11 @@ import {toggleAttendance} from '../../store/actions/event'
 
 // props = { event, }
 const GoingButton = ( props ) => {
-const {event} = props
-const attending = event.attending
+const {attending} = props
 const color = attending ? 'yellow' : undefined
 
     return (
-    <Button icon labelPosition='left' color={color} onClick={props.toggleGoing}>
+    <Button icon labelPosition='left' color={color} onClick={()=>props.toggleGoing(attending)}>
       <Icon name='check' />
       Going
     </Button>
@@ -20,10 +19,16 @@ const color = attending ? 'yellow' : undefined
 
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    toggleGoing: () => dispatch(toggleAttendance(ownProps.event)) 
+    attending: state.Event.attending.map(event=> event.id).includes(ownProps.event.id)
   }
 }
 
-export default connect(null,mapDispatchToProps)(GoingButton)
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    toggleGoing: (attending) => dispatch(toggleAttendance(ownProps.event, attending)) 
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(GoingButton)

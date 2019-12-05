@@ -6,6 +6,8 @@
         display: flex;
         flex-direction: row;
         height: 100%;
+        
+        
     }
 
     .calendarComponent {
@@ -13,12 +15,14 @@
         flex-direction: column;
         align-items: center;
         width: 50%;
+        height: 90vh;
     }
 
     .calendarDetails {
         margin-left: 10px;
         overflow-y: scroll;
         width: 50%;
+        height: 90vh;
     }
 
 
@@ -34,7 +38,7 @@
         display: flex;
         justify-content: space-around;
         font-weight: bolder;
-        color:var(--bright-pink);
+        color:var(--black);
         font-size: 1.5rem;
     }
 
@@ -97,6 +101,17 @@
         font-size: .8rem;
     }
 
+   
+
+    .calendarDetailsHeader, .calendarPageTitle {
+        margin: 10px;
+        padding: 5px;
+        border-radius: 8px;
+        background-color: var(--off-white);
+    }
+
+    
+
     .eventList .showMore {
         width: 100%;
         font-size: .8em;
@@ -104,20 +119,37 @@
 
     
     .eventItemDetail {
-
         border-radius: 5px;
         margin: 10px;
         padding: 10px;
-
         background-color: var(--active-blue);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+    }
+
+    .eventItemDetailInfo {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        font-size: smaller;
     }
 
-    .eventItemDetail .eventTitle {
+    .eventItemDetail .eventItemDetailTitle {
         text-align: center;
     }
+
+    .eventItemDetail .eventGeneralInfo {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .eventItemDetailInfo div p {
+        margin: 3px;
+    }
+
+    
 
     .eventItemDetail .eventItemDetailBtns {
         display: flex;
@@ -144,6 +176,7 @@
             margin-top: 10vmax;
             overflow-y: visible;
             width: 100%;
+            height: auto;
         }
       }
     

@@ -38,7 +38,7 @@ const CalendarHeader = (props) => {
      
         return (
            <div className="calenderHeader">
-               <h2>Calender</h2>
+               <h2 className="calendarPageTitle">Calender</h2>
                 <div className="calendarPicker">  
                     <div float="left"> {format(props.selectedDate, "MMMM")} </div>
                         <Select value={props.selectedDate} onChange={handleChange} renderValue={date => `${format(date, "MMM/yy")}`}>

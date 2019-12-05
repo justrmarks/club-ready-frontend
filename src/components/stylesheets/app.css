@@ -4,6 +4,7 @@
 body {    
     margin: 0 !important;
     padding: 0 !important;
+    background-image: url('/background.png');
 }
 
 :root {
@@ -16,7 +17,12 @@ body {
 
 /*****Layout and nav bar*****/
 .ActivePage {
-    height: 85vh;
+    background-image: url('/background.svg');
+    background-size: 100px 100px;
+    height: 100%;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
   }
 
 .header {
@@ -27,13 +33,14 @@ body {
 
 .navBar {
     top: 0;
-    background-color: var(--bright-pink);
+    /* background-color: var(--bright-pink); */
     margin: 0;
     padding: 5px;
     height: 10vh;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    overflow-x: scroll;
 }
 
 .navLinkList {
@@ -49,9 +56,8 @@ body {
     transition: 200ms;
 }
 
-  .activeNavLink {
-      border: 1px dashed var(--off-white);
-      font-weight: bolder;
+  .activeNavLink .MuiButton-root {
+    box-shadow: 3px 3px 2px 2px rgba(255, 105, 135, 1);
   }
 
  

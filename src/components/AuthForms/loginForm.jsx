@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
-import { login } from '../store/actions/auth'
+import { login } from '../../store/actions/auth'
 import { Redirect } from 'react-router-dom'
 import { connect} from 'react-redux'
 import Button  from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import style from './authForms.css'
 
 
 class LoginForm extends Component {
@@ -29,17 +30,20 @@ class LoginForm extends Component {
         console.log("logged in", this.props.loggedIn)
     }
 
+   
+
     render() {
+        
         if (this.props.loggedIn) {return <Redirect to='/calendar' /> }  
         
-        else { return <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        else { return <div className="formContainer"> <form style={style} className="loginForm" onChange={this.handleChange} onSubmit={this.handleSubmit}>
               
                 <TextField id="email" label="Email" inputProps={{name: "email"}} required/>
 
                 
                 <TextField id="password" label="password" inputProps={{name: "password", type:"password"}} required/>
                 <Button type="submit">Login </Button>
-            </form>}
+            </form> </div>}
     }
 
 }

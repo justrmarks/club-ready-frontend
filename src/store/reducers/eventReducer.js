@@ -1,6 +1,17 @@
-const eventReducer = (state = { all: [], hosting: [], requesting: true, show: null}, action) => {
-    let newEvents
+const eventReducer = (state = { attending: [], hosting: [], requesting: true, show: null}, action) => {
     switch (action.type) {
+        case "FETCH_ATTENDING":
+            return {
+            ...state,
+            requesting: true}
+        
+        case "SET_ATTENDING":
+            return {
+            ...state,
+            attending: action.events,
+            requesting: false
+            }
+
         case "FETCH_HOST_EVENTS":
             return {
             ...state,
@@ -13,6 +24,18 @@ const eventReducer = (state = { all: [], hosting: [], requesting: true, show: nu
             hosting: action.events,
             requesting: false
             };
+        case "CREATE_EVENT":
+            return {
+                ...state,
+                requesting: true
+            }
+        case "ADD_HOST_EVENT":
+            const newEvents = state.hosting
+            newEvents.push(action.event)
+            return {
+                ...state,
+                hosting: newEvents
+            }
 
         case "GET_SHOW":
             return {
@@ -26,18 +49,18 @@ const eventReducer = (state = { all: [], hosting: [], requesting: true, show: nu
             requesting: false
             };
         case "ATTEND_EVENT":
-            newEvents = state.all.filter(event=> event.id != action.event.id)
+            const newAttending = state.attending.filter(event=> event.id != action.event.id)
             action.event.attending = true
-            newEvents.push(action.event)
+            newAttending.push(action.event)
             return {
                 ...state,
-                all: newEvents
+                attending: newAttending
             }
         case "DELETE_ATTEND":
-            newEvents = state.all.filter(event=> event.id != action.event.id)
+            const deletedAttending = state.attending.filter(event=> event.id != action.event.id)
             return {
                 ...state,
-                all: newEvents
+                attending: deletedAttending
             }
 
         default:

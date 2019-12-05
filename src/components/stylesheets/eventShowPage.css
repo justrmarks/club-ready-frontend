@@ -1,14 +1,87 @@
-.eventTitleCard {
-    position: relative;
-    padding: 0;
-    width: 100%;
-    height: 20vmax;
+.eventShowPage {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    min-height: 90vh;
+    
 }
 
-.eventShowTitle {
-    position: absolute;
-    bottom: 10px;
-    left: 15px;
+.eventData{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
 }
+
+.eventTitleCard {
+    margin: 5vmax;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 8px #888888;
+    height: 50vh;
+    width: 50vw;
+}
+
+.eventTitleCard .eventTitleText {
+    margin: 10px;
+}
+.eventShowImage {
+    width: 100%;
+    height: 100%;
+}
+
+
+.eventShowPage .generalInfo {
+    margin: 5vmax; 
+    border-radius: 5px;
+    background-color: whitesmoke;
+    box-shadow: 10px 10px 8px #888888;
+    padding: 20px;
+    height: 80vh;
+    width: 50vw;
+    overflow-y: scroll;
+    font-size: 1rem;
+}
+
+.eventShowPage .eventDescription {
+    white-space: pre-wrap;
+    width: 100%;
+    height: 100%;
+    
+}
+
+    /************* Comment Feed *****************/
+
+    .commentFeed {
+        display: flex;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+
+   /**************Mobile Media Queries**************/
+
+   @media only screen and (max-width: 700px) {
+    .eventData {
+        flex-direction: column;
+    }
+    .eventTitleCard {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 15px
+    }
+
+    .eventShowPage .generalInfo {
+        width: 100%;
+        height: 100%;
+        overflow-y: visible;
+        margin-left: 0;
+    }
+  }
 
 

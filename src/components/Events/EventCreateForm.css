@@ -1,9 +1,17 @@
-.eventCreateForm {
+.eventCreatePage {
     display: flex;
     flex-direction: column;
-  
+    
     align-items: center;
     justify-content: space-around;
+}
+
+.eventCreateForm {
+    margin: 10vw;
+    padding: 5vh;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    box-shadow: 10px 10px 8px #888888;
 }
 
 .eventCreateForm div {

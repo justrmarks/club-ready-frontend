@@ -27,14 +27,16 @@ class ImageFieldCropper extends Component {
   }
 
   onCropComplete = (croppedArea, croppedAreaPixels) => {
-    console.log(croppedAreaPixels)
     const {x,y,width,height} = croppedAreaPixels
+    console.log(x,y,width,height)
     // this.props.setPicture(e.target.files[0])
     const img = document.createElement("img");
     img.src = this.state.imageSrc
     const canvas = document.createElement("canvas")
     const ctx = canvas.getContext("2d");
-    ctx.drawImage(img, x, y, width, height);
+    canvas.width = 1200
+    canvas.height = 900
+    ctx.drawImage(img, x, y, width, height, 0,0, canvas.width, canvas.height);
     canvas.toBlob(blob=> {
       this.props.setPicture(blob)
     })
@@ -90,7 +92,6 @@ class ImageFieldCropper extends Component {
                     aria-labelledby="Zoom"
                     onChange={(e, zoom) => this.onZoomChange(zoom)}
                     /> : undefined}
-                
             </div> 
     </div>) 
             }

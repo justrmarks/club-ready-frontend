@@ -8,13 +8,6 @@ import EventItemDetail from './eventItemDetail'
 
 const CalendarDetails = (props) => {
 
-
-      const PoseList = posed.ol({
-        enter: { staggerChildren: 50,
-
-        },
-        exit: { staggerChildren: 20, staggerDirection: -1 }
-      })
       const PoseItem = posed.li({
         enter: { x: 0, 
             transition: ({i})=>  ({delay: i * 200 }),
@@ -26,7 +19,7 @@ const events = props.events.map( (event, index)=> {
     return ( <PoseItem key={event.id} i={index}> <EventItemDetail event={event}/> </PoseItem> )
 })
     return (<div className="calendarDetails"> 
-    <h3>{format(props.selectedDate, "eeee, MMMM d")} </h3>
+    <h3 className="calendarDetailsHeader">{format(props.selectedDate, "eeee, MMMM d")} </h3>
     <ol className="eventList">
         <PoseGroup animateOnMount={true}> 
                 {events.length > 0 ? events: ""}
@@ -38,7 +31,6 @@ const events = props.events.map( (event, index)=> {
 }
 
 const mapStateToProps = (state) => {
-    console.log(state.Calendar);
     const events=  state.Calendar.events.filter(event=> {
         return isSameDay(parseISO(event.start_time), state.Calendar.selectedDate)
     }) 

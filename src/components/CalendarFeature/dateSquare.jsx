@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { isSameDay, format, parseISO} from 'date-fns'
+import { isSameDay, format, parseISO, isSameMonth} from 'date-fns'
 import EventItem from './eventItem'
 import { selectDate, fetchEvents} from '../../store/actions/calendar'
 import {Button} from '@material-ui/core'
@@ -22,7 +22,11 @@ const dateSquare = (props) => {
     const formattedDate = format(props.date, "d")
     const handleClick = () => {
         if( !isSameDay(props.selectedDate, props.date)) {
+            if (!isSameMonth(props.selectedDate, props.date)) {
+                props.fetchEvents(props.date)
+            }
             props.selectDate(props.date)
+            
         }
     }
 
@@ -51,10 +55,10 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return { selectDate: (date) => {
-        dispatch(fetchEvents(date.getMonth()+1))
-        dispatch(selectDate(date))} };
+        dispatch(selectDate(date))},
+        fetchEvents: (date)=> dispatch(fetchEvents(date.getMonth()+1))  };
   };
 
 export default connect(mapStateToProps, mapDispatchToProps)(dateSquare)
