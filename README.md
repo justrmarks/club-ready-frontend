@@ -12,6 +12,11 @@ Underground and DIY communities have identified the problem of advertising space
 * Ruby on Rails
 * PostgreSQL
 * React-Redux
+* [Moment.js](https://momentjs.com)
+* [Pose - a simple Component animation library](https://popmotion.io/pose/)
+* [Material UI](https://material-ui.com/)
+* [react-easy-crop - a component that makes image cropping and processing on the client side a breeze](https://github.com/ricardo-ch/react-easy-crop)
+* [react-datetime - a lightweight and easily customizable datetime picker component](https://github.com/YouCanBookMe/react-datetime)
 
 ## Current Features
 
@@ -28,3 +33,28 @@ Underground and DIY communities have identified the problem of advertising space
 * Users can mark attendance
 
 ## Screenshots
+
+![](./Screenshots/CalendarView.png)
+Calendar events are shown home page with a master detail list of the month- events on the selected day with going and contact buttons on the detail
+
+![](./Screenshots/CalendarHover.png)
+Calendar items expand on mouse hover
+
+![](./Screenshots/EventShowPage.png)
+Event show page displays Event cover image, has link to associated Google Calendar Event, and going and contact button components
+
+![](./Screenshots/CommentView.png)
+Authenticated Users can comment on Event Show pages
+
+![](./Screenshots/DateTimePickerEventCreate.png)
+Event Create form utilizes react-datetime component for clean selection of Event start and end times
+
+![](./Screenshots/AccessibilityFieldsEventCreate.png)
+All events' accessibility fields are required on Event Create Form and default to values with least accessibility for transparency
+
+![](./Screenshots/ImageCropper.png)
+Image Cropper component on Event Create form processes and normalizes Image data before uploading form data with simple UI of react-easy-crop
+
+![](./Screenshots/LoginView.png)
+Login Form
+
