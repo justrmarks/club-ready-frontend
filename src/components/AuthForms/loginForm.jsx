@@ -34,7 +34,7 @@ class LoginForm extends Component {
 
     render() {
         
-        if (this.props.loggedIn) {return <Redirect to='/calendar' /> }  
+        if (this.props.loggedIn) {return <Redirect to='/' /> }  
         
         else { return <div className="formContainer"> <form style={style} className="loginForm" onChange={this.handleChange} onSubmit={this.handleSubmit}>
               

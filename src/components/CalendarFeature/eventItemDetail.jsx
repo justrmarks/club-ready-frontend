@@ -1,12 +1,15 @@
 import React from 'react'
-import { format, parseISO} from 'date-fns'
+import { format, parseISO, isAfter} from 'date-fns'
 import GoingButton from '../Events/GoingButton'
 import ContactButton from '../Events/ContactButton'
 import {Link } from 'react-router-dom'
+import {connect} from 'react-redux'
 
 
 // props = { event: [event object from redux store]}
-const EventItemDetail = ({event}) => {
+const EventItemDetail = (props) => {
+
+    const {event, isValidUser} = props
     const parsedDate = parseISO(event.start_time)
     const formattedTime = format(parsedDate, 'h:mmaa')
     const summaryEnd = 250
@@ -22,6 +25,7 @@ const EventItemDetail = ({event}) => {
                         <h5>host: {event.host.name}</h5>
                         <p> location:{event.location}</p>
                         <p> starts @{formattedTime}</p>
+                        <a href={event.google_link} target="_blank">Google Cal link</a>
                     </div>
                 
                 <div className="eventItemDetailAccessability"> 
@@ -40,10 +44,10 @@ const EventItemDetail = ({event}) => {
                                 'wheelchair_accessible': "This space is wheelchair accessible"}[accessibility.mobility]}</p>
                 </div>
 
-                <div className="eventItemDetailBtns">
+                {isValidUser && isAfter(parsedDate, new Date()) && <div className="eventItemDetailBtns">
                     <GoingButton event={event} />
                     <ContactButton host={event.host} />
-                </div>
+                </div>}
                 </div>
 
             <p> {event.description.length > summaryEnd ? `${event.description.substring(0,summaryEnd)}...`: event.description}</p>
@@ -51,6 +55,11 @@ const EventItemDetail = ({event}) => {
     </div> )
 }
 
+const mapStateToProps = (state)=> {
+    return {
+        isValidUser: !!(state.Auth.currentUser && state.Auth.currentUser.role)
+    }
+}
 
 
-export default EventItemDetail;
+export default connect(mapStateToProps)(EventItemDetail);

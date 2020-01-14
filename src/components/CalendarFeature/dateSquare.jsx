@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { isSameDay, format, parseISO, isSameMonth} from 'date-fns'
+import { isSameDay, format, parseISO, isSameMonth, isAfter, addDays} from 'date-fns'
 import EventItem from './eventItem'
 import { selectDate, fetchEvents} from '../../store/actions/calendar'
 import {Button} from '@material-ui/core'
@@ -33,7 +33,8 @@ const dateSquare = (props) => {
 
     const eventItems = props.events.map(event => <EventItem event={event} key={event.id}/>)
     const activeClass = isSameDay(props.selectedDate, props.date) ? " activeDateSquare" : ""
-    return (<div className={"dateSquare" + activeClass} onClick={handleClick}>
+    const pastClass = isAfter(addDays(new Date(), -1), props.date) ? " past" : ""
+    return (<div className={"dateSquare" + pastClass + activeClass } onClick={handleClick}>
         <span className="dateNumber">{formattedDate}</span>
         <ol className="eventList">
             {eventItems.length > 2 ? <> {eventItems.slice(0,2)} <Button className="showMore">...</Button></> : eventItems}

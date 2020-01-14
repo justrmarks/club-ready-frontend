@@ -71,9 +71,15 @@
        
     }
 
+    .dateSquare.past {
+        background-color: darkgrey;
+    }
+
     .activeDateSquare {
         background-color: var(--active-blue);
     }
+
+   
 
     .eventList {
         display: flex;
@@ -93,6 +99,14 @@
         padding: 5px; 
     }
     .eventItem.attending {
+        background-color: hsl(44, 100%, 58%)
+    }
+
+    .eventItem.past {
+        background-color: gray
+    }
+
+    .eventItem.past.attending {
         background-color: hsl(44, 100%, 58%)
     }
 

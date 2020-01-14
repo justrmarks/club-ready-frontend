@@ -1,8 +1,12 @@
+/********General Styling*********/
+
 .eventShowPage {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
     min-height: 90vh;
+    align-items: center;
+    padding-bottom: 30px;
     
 }
 
@@ -22,17 +26,20 @@
     border-radius: 20px;
     background-color: whitesmoke;
     box-shadow: 10px 10px 8px #888888;
-    height: 50vh;
+    min-height: 50vh;
     width: 50vw;
 }
 
 .eventTitleCard .eventTitleText {
     margin: 10px;
 }
-.eventShowImage {
+.eventTitleCard h2 {
+    font-size: 1.5rem
+}
+/* .eventShowImage {
     width: 100%;
     height: 100%;
-}
+} */
 
 
 .eventShowPage .generalInfo {
@@ -41,7 +48,7 @@
     background-color: whitesmoke;
     box-shadow: 10px 10px 8px #888888;
     padding: 20px;
-    height: 80vh;
+    max-height: 80vh;
     width: 50vw;
     overflow-y: scroll;
     font-size: 1rem;
@@ -50,16 +57,30 @@
 .eventShowPage .eventDescription {
     white-space: pre-wrap;
     width: 100%;
-    height: 100%;
     
 }
+    /***********ATTENDEES_PANEL**********/
 
+    .eventAttendees {
+        padding: 5%;
+    }
     /************* Comment Feed *****************/
 
     .commentFeed {
         display: flex;
         align-items: flex-start;
+        flex-direction: column;
         width: 100%;
+        background-color: whitesmoke;
+        padding: 25px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        box-shadow: 10px 10px 8px #888888;
+    }
+
+    .comment.commentItem {
+        background-color: whitesmoke;
+
     }
 
 

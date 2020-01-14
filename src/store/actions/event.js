@@ -121,12 +121,14 @@ export const getEvent = (id) => {
         dispatch({type: GET_SHOW})
         const resp = await fetch(`${EVENTS_INDEX}/${id}`, reqObj)
         const json = await resp.json()
-        const event = {...json.event.data.attributes, comments: json.comments}
+        console.log(json)
+        const comments = json.comments.map(comment=> comment.data.attributes)
+        const event = {...json.event.data.attributes, comments}
         dispatch(setShow(event))
       
     }
       catch (error) {
-
+        console.error(error)
       }
     
     }

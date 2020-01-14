@@ -34,11 +34,12 @@ render() {
                         <Typography component="h2" variant="h2">
                             {event.title}
                         </Typography>
-                        <p component="h3" variant="h3">
+                        <p>
                             {`${formattedStartTime} - ${formattedEndTime}`}
                         </p>
                         <p>{this.props.event.location}</p>
-                        <Link to={`/organizers/${this.props.event.host.id}`}>{this.props.event.host.name}</Link>
+                        <Link to={`/organizers/${this.props.event.host.id}`}><h3>{this.props.event.host.name}</h3></Link>
+                        <a href={event.google_link} target="_blank"><p>Google Cal link</p></a>
                         <GoingButton event={this.props.event}/>
                     </div>
                     
@@ -65,15 +66,24 @@ render() {
                                     'partially_accessible':"This space is partially accessible",
                                     'wheelchair_accessible': "This space is wheelchair accessible"}[accessibility.mobility]}</p>
                     </div>
+                    
                     <div className="eventDescription"> 
                         <h3>Description </h3>
                         <p> {this.props.event.description}</p> 
+                        
+    
                     </div>
-
+                       
                 </div>
+                
             </div>
-            
-            <CommentFeed comments={event.comments} />
+            {this.props.isHost ? <div className="shadowContainer eventAttendees">
+                    <h3>Attendees: {event.attendees.length}</h3>
+                        <ul> 
+                            {event.attendees.map(user=> <li key={user.id}>{user.email}</li>)}
+                        </ul>
+                    </div> : <></>}
+            <CommentFeed event={event} comments={event.comments} />
 
     </div> )
         }
@@ -86,7 +96,8 @@ render() {
 const mapStateToProps = (state) => {
     return {
         event: state.Event.show,
-        requesting: state.Event.requesting
+        requesting: state.Event.requesting,
+        isHost: (state.Event.show && state.Event.show.host.id) == (state.Auth.currentUser && state.Auth.currentUser.id)
     }
 }
 

@@ -17,9 +17,9 @@ const CalendarHeader = (props) => {
     const months = new Array(12).fill("month")
 
     const weekdays = days.map( (day,index) => {
-        return (<p key={index} className="dayName">
+        return (<h3 key={index} className="dayName">
             {format(addDays(startDate, index), 'eee')}
-        </p>)})
+        </h3>)})
 
 
     const monthOptions = months.map((element, index) => {

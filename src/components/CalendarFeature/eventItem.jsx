@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { format, parseISO} from 'date-fns'
+import { format, parseISO, isAfter} from 'date-fns'
 import { Link } from 'react-router-dom'
 
 
@@ -23,9 +23,10 @@ class EventItem extends Component {
     const parsedDate = parseISO(event.start_time)
     const formattedTime = format(parsedDate, 'h:mmaa')
 
+  
+   
 
-
-    return (<li className={`eventItem ${event.attending ? " attending" : ""}`} onMouseOver={this.handleOpen} onMouseLeave={this.handleClose}>
+    return (<li className={`eventItem ${isAfter(new Date(), parsedDate) ? "past" : ""} ${event.attending ? "attending" : ""}`} onMouseOver={this.handleOpen} onMouseLeave={this.handleClose}>
        { this.state.open ? <> <Link to={`/events/${event.id}`}className="eventName">{event.title}</Link>
         <div className="hostName">{event.host.name}</div>
         <div className="startTime">{formattedTime}</div> </> : <span></span> }

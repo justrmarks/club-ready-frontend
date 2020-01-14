@@ -9,6 +9,7 @@ import LoginForm from './AuthForms/loginForm'
 import EventCreateForm from './Events/EventCreateForm'
 import EventShowPage from './Events/EventShowPage'
 import EventListPage from './Events/EventListPage'
+import AdminRouter from './Admin/AdminRouter'
 
 class App extends Component {
 
@@ -21,14 +22,14 @@ class App extends Component {
       <Navbar />
       <main className="ActivePage">
         <Switch >
-          <Route path="/calendar"><CalendarPage/> </Route>
+          <Route exact path="/"><CalendarPage/> </Route>
           <Route exact path="/login"><LoginForm/> </Route>
           <Route exact path="/events/new" component={EventCreateForm} /> 
           <Route exact path="/events/attending"> <EventListPage events={this.props.attending}/></Route>
           <Route exact path="/events/hosting"  > <EventListPage events={this.props.hosting}/> </Route>
           <Route exact path="/events/:id" render={routeProps => (
           <EventShowPage {...routeProps} />)} />
-        
+          <Route path="/admin"><AdminRouter /> </Route>
         </Switch>
       </main>
     </div>

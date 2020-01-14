@@ -62,11 +62,23 @@ const eventReducer = (state = { attending: [], hosting: [], requesting: true, sh
                 ...state,
                 attending: deletedAttending
             }
-
+        case "ADD_COMMENT":
+            const newComments = state.show.comments
+            newComments.push(action.comment)
+            return {
+                ...state, 
+                show: {...state.show, comments: newComments}}
+        case "DELETE_COMMENT":
+            const deleteComments = state.show.comments
+            deleteComments.filter(comment=> action.comment.id !== comment.id)
+            return {
+                ...state, 
+                show: {...state.show, comments: deleteComments}}
+        
         default:
-            return {...state
+            return {...state}
         }
-        }
+        
   };
   
   export default eventReducer;

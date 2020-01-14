@@ -80,8 +80,15 @@ class EventCreateForm extends Component {
         console.log(newEvent)
         if (moment.isMoment(newEvent.start_time)) {
         newEvent.start_time = newEvent.start_time.format() }
+        else {
+            newEvent.start_time = newEvent.start_time.toISOString();
+        }
+
         if (moment.isMoment(newEvent.end_time)) {
         newEvent.end_time = newEvent.end_time.format() }
+        else {
+            newEvent.end_time = newEvent.end_time.toISOString();
+        }
         console.log(newEvent)
         this.props.createEvent(newEvent)
         setTimeout(()=>this.props.history.push('/events/hosting'), 1000)
@@ -94,7 +101,7 @@ class EventCreateForm extends Component {
     render() {
         if (!this.props.validUser) {
             console.log("valid user",this.props.validUser)
-            return <Redirect to='/calendar' /> }  
+            return <Redirect to='/' /> }  
         
         else { return <div className="eventCreatePage"> <form onChange={this.handleChange} onSubmit={this.handleSubmit} className="eventCreateForm" style={style}>
             <h2> Add an event to the calendar </h2>
@@ -155,10 +162,10 @@ class EventCreateForm extends Component {
                         onChange={this.handleChange}
                         >
                             <MenuItem value={"inaccessible"}>Not an accessibile space</MenuItem>
-                            <MenuItem value={"partially_accessible"}>Partially accessible</MenuItem>
-                            <MenuItem value={"wheelchair_accessible"}>Wheelchair accessibile</MenuItem>
+                            <MenuItem value={"partially_accessible"}>People with a physical disability can access the majority of the space</MenuItem>
+                            <MenuItem value={"wheelchair_accessible"}>Majority of space is Wheelchair accessibile</MenuItem>
                         </Select>
-                        <FormHelperText>Is the space accessible for wheelchair users and others with disabilities?</FormHelperText>
+                        <FormHelperText>Is the space accessible for wheelchair users and others with disabilities? Think ADA compliance, check out this Mix mag article for more info: https://mixmag.net/feature/nightclubs-need-to-be-way-more-accessible-for-disabled-clubbers</FormHelperText>
                     </FormControl>
 
                     <FormControl className="selectComponent">
