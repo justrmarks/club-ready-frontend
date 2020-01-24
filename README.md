@@ -2,6 +2,8 @@
 
 A React/Rails app for Underground and DIY community leaders, organizers, and community members to manage events. 
 
+[Associated Rails API repo here](https://github.com/justrmarks/club-ready-api)
+
 ## Background
 
 Underground and DIY communities have identified the problem of advertising spaces and events through platforms that both censor and monetize their content. This platform is one potential solution while also addressing problems of safety and accessibility as well as keeping organizers accountable by allowing the community to moderate itself. 

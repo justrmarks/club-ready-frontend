@@ -1,4 +1,5 @@
 const LOGIN_API = 'http://localhost:3000/login'
+const SIGNUP_API = 'http://localhost:3000/signup'
 const AUTH_API = 'http://localhost:3000/auth'
 const AUTH_TOKEN_NAME = "project-sploopy authorization"
 
@@ -11,7 +12,6 @@ export const setCurrentUser = currentUser => ({ type: SET_AUTH, currentUser });
 export const login = (email, password) => {
   return async dispatch => {
     try {
-      console.log(email,password)
       const reqObj = {
         method: 'POST',
         headers: { 'Content-Type' : 'application/json'},
@@ -36,6 +36,31 @@ export const login = (email, password) => {
     }
   };
 };
+
+export const signup = (email, password, name) => {
+  return async dispatch => {
+    try {
+    const reqObj = {
+      method: 'POST',
+      headers: { 'Content-Type' : 'application/json'},
+      body: JSON.stringify({
+          user: { 
+              email,
+              name,
+              password
+          }
+      }) }
+
+  const response = await fetch(SIGNUP_API, reqObj);
+  const json = await response.json();
+  dispatch(login(email, password));
+  }
+  catch (error) {
+    console.error("Error Signing up", error)
+  }
+}
+
+}
 
 export const fetchCurrentUser = () => {
   return async dispatch => {

@@ -24,19 +24,17 @@ class LoginForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const password = e.target.password.value;
-        const email = e.target.email.value;
+        const {password, email} = this.state
         this.props.attemptLogin(email,password)
-        console.log("logged in", this.props.loggedIn)
     }
 
    
 
     render() {
         
-        if (this.props.loggedIn) {return <Redirect to='/' /> }  
+        if (this.props.loggedIn) {return <Redirect to='/'/> }  
         
-        else { return <div className="formContainer"> <form style={style} className="loginForm" onChange={this.handleChange} onSubmit={this.handleSubmit}>
+        else { return <div className="formContainer"> <form style={style} className="authForm" onChange={this.handleChange} onSubmit={this.handleSubmit}>
               
                 <TextField id="email" label="Email" inputProps={{name: "email"}} required/>
 
