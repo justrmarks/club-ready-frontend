@@ -1,6 +1,6 @@
-const LOGIN_API = 'http://localhost:3000/login'
-const SIGNUP_API = 'http://localhost:3000/signup'
-const AUTH_API = 'http://localhost:3000/auth'
+const LOGIN_API = process.env.API_ROOT+'/login'
+const SIGNUP_API = process.env.API_ROOT+'/signup'
+const AUTH_API = process.env.API_ROOT+'/auth'
 const AUTH_TOKEN_NAME = "project-sploopy authorization"
 
 

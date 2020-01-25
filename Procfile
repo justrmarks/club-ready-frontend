@@ -1,0 +1,1 @@
+web: API_ROOT="https://still-river-11236.herokuapp.com/" npm start

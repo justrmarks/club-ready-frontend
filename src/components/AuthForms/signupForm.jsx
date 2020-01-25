@@ -63,7 +63,7 @@ class SignupForm extends Component {
                 <TextField id="name" label="name" inputProps={{name: "name"}} required/>
 
                 {/* password fields */ }
-                <TextField id="password" label="password" inputProps={{name: "password", type:"password"}} required {this.state.passwordErrors.length > 0 ? "error" : this.state.passwordErrors.join("\n")}/>
+                <TextField id="password" label="password" inputProps={{name: "password", type:"password"}} required {(this.state.passwordErrors.length > 0) ? "error" : this.state.passwordErrors.join("\n")}/>
                 <TextField id="passwordConfirm" label="Confirm Password" inputProps={{name: "passwordConfirm", type:"password"}} required {this.state.passwordErrors.length > 0 ? `error helperText=${this.state.passwordErrors[0]}` : ""} />
                 <Button type="submit">Signup </Button>
             </form> </div>}

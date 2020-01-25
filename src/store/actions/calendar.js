@@ -1,5 +1,5 @@
 const AUTH_TOKEN_NAME = "project-sploopy authorization"
-const EVENTS_INDEX = 'http://localhost:3000/events'
+const EVENTS_INDEX = process.env.API_ROOT+'/events'
 
 export const FETCH_EVENTS = "FETCH_EVENTS"
 export const SET_EVENTS = "SET_EVENTS"
