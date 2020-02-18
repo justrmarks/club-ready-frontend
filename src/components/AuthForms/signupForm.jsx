@@ -53,7 +53,8 @@ class SignupForm extends Component {
    
 
     render() {
-        
+        const errorAttr= this.state.passwordErrors.length > 0 
+        const errorHelperText = errorAttr ? `${this.state.passwordErrors[0]}` : ""
         if (this.props.loggedIn) {return <Redirect to='/' /> }  
         
         else { return <div className="formContainer"> <form style={style} className="authForm" onChange={this.handleChange} onSubmit={this.handleSubmit}>
@@ -63,8 +64,8 @@ class SignupForm extends Component {
                 <TextField id="name" label="name" inputProps={{name: "name"}} required/>
 
                 {/* password fields */ }
-                <TextField id="password" label="password" inputProps={{name: "password", type:"password"}} required {(this.state.passwordErrors.length > 0) ? "error" : this.state.passwordErrors.join("\n")}/>
-                <TextField id="passwordConfirm" label="Confirm Password" inputProps={{name: "passwordConfirm", type:"password"}} required {this.state.passwordErrors.length > 0 ? `error helperText=${this.state.passwordErrors[0]}` : ""} />
+                <TextField id="password" label="password" inputProps={{name: "password", type:"password"}} error={errorAttr} helperText={errorHelperText} required  />
+                <TextField id="passwordConfirm" label="Confirm Password" inputProps={{name: "passwordConfirm", type:"password"}} helperText={errorHelperText} required  />
                 <Button type="submit">Signup </Button>
             </form> </div>}
     }
