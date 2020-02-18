@@ -20,7 +20,7 @@ class Navbar extends Component {
     const hostEventLinks = props.hostEvents.map(event=> <Link key={event.id} to={`/events/${event.id}`}>{event.title}</Link> )
   
   return (
-    <nav className="navBar">
+    <nav className="navBar" style={{backgroundColor: "#ddd"}}>
         <h1 className="header"> Club Ready</h1>
         
         <ul className="navLinkList">
@@ -31,7 +31,7 @@ class Navbar extends Component {
         </ul>
 
         <div className="navAuth">
-          {props.currentUser ? <> <NavLink to="/profile" activeClassName="activeNavLink"> {this.props.currentUser.name} ~ role: {this.props.currentUser.role} </NavLink> <Button onClick={props.attemptLogout}>Logout</Button> </> : <Link to="/login"> <Button>Login</Button> </Link>}
+          {props.currentUser ? <> <NavLink to="/profile" activeClassName="activeNavLink"> {this.props.currentUser.name} ~ role: {this.props.currentUser.role} </NavLink> <Button onClick={props.attemptLogout}>Logout</Button> </> : <> <Link to="/login"> <Button>Login</Button> </Link> <Link to="/signup"> <Button>Signup</Button> </Link></>}
         </div>
         
     </nav>
