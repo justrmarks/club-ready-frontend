@@ -3,7 +3,7 @@ const AUTH_TOKEN_NAME = "project-sploopy authorization"
 export const ADD_COMMENT = "ADD_COMMENT"
 export const DELETE_COMMENT = "DELETE_COMMENT"
 export const CREATE_COMMENT = "CREATE_COMMENT"
-const COMMENT_INDEX = process.env.API_ROOT+'/comments'
+const COMMENT_INDEX = process.env.REACT_APP_API_ROOT+'/comments'
 
 export const addComment = (comment)=> {return {type: ADD_COMMENT, comment}}
 export const createComment = ({id, body})=> {

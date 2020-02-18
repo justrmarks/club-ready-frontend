@@ -1,6 +1,6 @@
 const AUTH_TOKEN_NAME = "project-sploopy authorization"
 
-const EVENTS_INDEX = process.env.API_ROOT+'/events'
+const EVENTS_INDEX = process.env.REACT_APP_API_ROOT+'/events'
 
 export const FETCH_ATTENDING = "FETCH_ATTENDING"
 export const SET_ATTENDING = "SET_ATTENDING"
