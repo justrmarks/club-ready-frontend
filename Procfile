@@ -1,1 +1,0 @@
-web: REACT_APP_API_ROOT="https://still-river-11236.herokuapp.com/" npm start

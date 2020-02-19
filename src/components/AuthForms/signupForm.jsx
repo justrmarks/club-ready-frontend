@@ -23,11 +23,12 @@ class SignupForm extends Component {
         const value = e.target.value;
         this.setState({
             [name]: value
-        })
+        }, ()=> { 
 
         // validations 
-        if (this.state.password != this.state.passwordConfirm) {
+        if (this.state.password !== this.state.passwordConfirm) {
             this.setState((prevState) => {
+
                 return {
                 passwordErrors: [...prevState.passwordErrors, "Passwords do not match"]
                 }
@@ -38,7 +39,7 @@ class SignupForm extends Component {
                 passwordErrors: []
             })
         }
-
+    })
 
     } 
 

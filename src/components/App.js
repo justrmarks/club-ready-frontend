@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { fetchCurrentUser} from '../store/actions/auth'
 import {Route, Switch } from 'react-router-dom'
 import LoginForm from './AuthForms/loginForm'
-import SignUpForm from './AuthForms/signupForm'
+import SignupForm from './AuthForms/signupForm'
 import EventCreateForm from './Events/EventCreateForm'
 import EventShowPage from './Events/EventShowPage'
 import EventListPage from './Events/EventListPage'
@@ -25,7 +25,7 @@ class App extends Component {
         <Switch >
           <Route exact path="/"><CalendarPage/> </Route>
           <Route exact path="/login"><LoginForm/> </Route>
-          <Route exact path="/signup"><signupForm/> </Route>
+          <Route exact path="/signup"><SignupForm/> </Route>
           <Route exact path="/events/new" component={EventCreateForm} /> 
           <Route exact path="/events/attending"> <EventListPage events={this.props.attending}/></Route>
           <Route exact path="/events/hosting"  > <EventListPage events={this.props.hosting}/> </Route>
