@@ -25,9 +25,11 @@ class Navbar extends Component {
         
         <ul className="navLinkList">
           <NavLink exact to="/" className="navLink" activeClassName="activeNavLink"><Button> Calendar </Button> </NavLink>
+          <NavLink exact to="/about" className="navLink" activeClassName="activeNavLink"><Button> About </Button> </NavLink>
+
           {/* <NavLink exact to='/' className="navLink" activeClassName="activeNavLink"> <Button> Feed </Button> </NavLink> */}
           {props.currentUser && <NavLink to='/events/attending' className="navLink" activeClassName="activeNavLink"> <Button> Attending Events </Button> </NavLink>}
-          {props.currentUser && props.currentUser.role == 'organizer' ? <> <NavLink to="/events/hosting" activeClassName="activeNavLink"> <Button>Hosting Events</Button></NavLink> <NavLink to="/events/new"> <Button>Add Events</Button></NavLink> </>: <></>}
+          {props.currentUser && (props.currentUser.role === 'organizer' || props.currentUser.role === 'admin')  ? <> <NavLink to="/events/hosting" activeClassName="activeNavLink"> <Button>Hosting Events</Button></NavLink> <NavLink to="/events/new"> <Button>Add Events</Button></NavLink> </>: <></>}
         </ul>
 
         <div className="navAuth">

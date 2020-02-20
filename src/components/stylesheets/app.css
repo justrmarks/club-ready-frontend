@@ -16,12 +16,14 @@ body {
 
 /******** Theming ********/
 .shadowContainer {
-    border-radius: 7%;
+    border-radius: 5%;
     box-shadow: 10px 10px 8px #888888;
     background-color: whitesmoke;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    padding: 20px;
+    margin: 1.5rem;
 }
 
 /*****Layout and nav bar*****/

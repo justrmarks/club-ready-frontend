@@ -67,7 +67,7 @@ export const ATTEND_EVENT = "ATTEND_EVENT"
 export const DELETE_ATTEND = "DELETE_ATTEND"
 
   export const toggleAttendance = (event, attending) => {
-    let ATTENDING_INDEX = "http://localhost:3000/attendings"
+    let ATTENDING_INDEX = process.env.REACT_APP_API_ROOT+"/attendings"
     return async (dispatch) => {
       let reqObj;
       let type;
