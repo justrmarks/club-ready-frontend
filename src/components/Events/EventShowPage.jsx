@@ -39,7 +39,7 @@ render() {
                         </p>
                         <p>{this.props.event.location}</p>
                         <Link to={`/organizers/${this.props.event.host.id}`}><h3>{this.props.event.host.name}</h3></Link>
-                        <a href={event.google_link} target="_blank"><p>Google Cal link</p></a>
+                        <a href={event.google_link} target="_blank" rel="noopener noreferrer"><p>Google Cal link</p></a>
                         <GoingButton event={this.props.event}/>
                     </div>
                     
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
     return {
         event: state.Event.show,
         requesting: state.Event.requesting,
-        isHost: (state.Event.show && state.Event.show.host.id) == (state.Auth.currentUser && state.Auth.currentUser.id)
+        isHost: (state.Event.show && state.Event.show.host.id) === (state.Auth.currentUser && state.Auth.currentUser.id)
     }
 }
 

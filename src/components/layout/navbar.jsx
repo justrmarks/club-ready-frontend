@@ -16,8 +16,8 @@ class Navbar extends Component {
 
   render() {
     const props = this.props
-    const attendingEventLinks = props.attendingEvents.map(event=> <Link key={event.id} to={`/events/${event.id}`}>{event.title}</Link>)
-    const hostEventLinks = props.hostEvents.map(event=> <Link key={event.id} to={`/events/${event.id}`}>{event.title}</Link> )
+    // const attendingEventLinks = props.attendingEvents.map(event=> <Link key={event.id} to={`/events/${event.id}`}>{event.title}</Link>)
+    // const hostEventLinks = props.hostEvents.map(event=> <Link key={event.id} to={`/events/${event.id}`}>{event.title}</Link> )
   
   return (
     <nav className="navBar" style={{backgroundColor: "#ddd"}}>

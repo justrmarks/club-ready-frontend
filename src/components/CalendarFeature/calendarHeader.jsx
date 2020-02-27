@@ -2,7 +2,6 @@ import React from 'react';
 import format from 'date-fns/esm/format'
 import addDays from 'date-fns/esm/addDays'
 import addMonths from 'date-fns/addMonths'
-import isSameMonth from 'date-fns/esm/isSameMonth'
 import startOfWeek from 'date-fns/startOfWeek'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem';

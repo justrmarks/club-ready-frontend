@@ -27,7 +27,7 @@ class App extends Component {
           <Route exact path="/"><CalendarPage/> </Route>
           <Route exact path="/login"><LoginForm/> </Route>
           <Route exact path="/signup"><SignupForm/> </Route>
-          <Route exact path="/about"><AboutPage className="shadowContainer"/> </Route>
+          <Route exact path="/about"><AboutPage/> </Route>
           <Route exact path="/events/new" component={EventCreateForm} /> 
           <Route exact path="/events/attending"> <EventListPage events={this.props.attending}/></Route>
           <Route exact path="/events/hosting"  > <EventListPage events={this.props.hosting}/> </Route>

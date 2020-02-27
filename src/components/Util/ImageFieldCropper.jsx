@@ -15,7 +15,6 @@ class ImageFieldCropper extends Component {
   style = {
       position: 'relative',
       height: '60vh',
-      width: '80vh',
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column'
@@ -65,7 +64,7 @@ class ImageFieldCropper extends Component {
     return (<div className="ImageFieldCropper" style={this.style}>
             <input type="file" onChange={this.onFileChange} style={{margin: '10px'}}/>
             
-            <div className="cropContainer" style={{position: 'relative',height: '60%', width:'80%', border: '1px solid gainsboro', borderRadius: '5px'}} >
+            <div className="cropContainer" style={{position: 'relative',height: '100%', width:'100%', border: '1px solid gainsboro', borderRadius: '5px'}} >
             {this.state.imageSrc && (
             <Fragment>
                     <Cropper

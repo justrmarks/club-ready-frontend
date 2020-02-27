@@ -6,7 +6,7 @@ import { createComment } from '../../../store/actions/comment'
 
 const CommentFeed = (props) => {
 
-  const {event,comments} = props
+  const {comments} = props
   
   const commentItems = comments.map(comment=> <CommentItem key={comment.id} comment={comment} />)
 

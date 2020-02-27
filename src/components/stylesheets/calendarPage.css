@@ -59,7 +59,7 @@
     .dateSquareRow {
         display: flex;
         justify-content: space-around;
-        min-height: calc(100%/5);
+        min-height: 20%;
         width: 100%;
     }
 

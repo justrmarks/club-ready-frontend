@@ -25,7 +25,7 @@ const EventItemDetail = (props) => {
                         <h5>host: {event.host.name}</h5>
                         <p> location:{event.location}</p>
                         <p> starts @{formattedTime}</p>
-                        <a href={event.google_link} target="_blank">Google Cal link</a>
+                        <a href={event.google_link} rel="noopener noreferrer" target="_blank">Google Cal link</a>
                     </div>
                 
                 <div className="eventItemDetailAccessability"> 

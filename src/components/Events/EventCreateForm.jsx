@@ -49,7 +49,7 @@ class EventCreateForm extends Component {
             })
         }
 
-        else if (e.target.type != 'file') {
+        else if (e.target.type !== 'file') {
         this.setState({
             [name]: value
         }) }

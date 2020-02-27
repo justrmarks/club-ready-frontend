@@ -53,7 +53,8 @@ export const signup = (email, password, name) => {
 
   const response = await fetch(SIGNUP_API, reqObj);
   const json = await response.json();
-  dispatch(login(email, password));
+  if (json) {
+  dispatch(login(email, password)); }
   }
   catch (error) {
     console.error("Error Signing up", error)

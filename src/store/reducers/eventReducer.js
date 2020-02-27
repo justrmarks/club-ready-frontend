@@ -49,7 +49,7 @@ const eventReducer = (state = { attending: [], hosting: [], requesting: true, sh
             requesting: false
             };
         case "ATTEND_EVENT":
-            const newAttending = state.attending.filter(event=> event.id != action.event.id)
+            const newAttending = state.attending.filter(event=> event.id !== action.event.id)
             action.event.attending = true
             newAttending.push(action.event)
             return {
@@ -57,7 +57,7 @@ const eventReducer = (state = { attending: [], hosting: [], requesting: true, sh
                 attending: newAttending
             }
         case "DELETE_ATTEND":
-            const deletedAttending = state.attending.filter(event=> event.id != action.event.id)
+            const deletedAttending = state.attending.filter(event=> event.id !== action.event.id)
             return {
                 ...state,
                 attending: deletedAttending
