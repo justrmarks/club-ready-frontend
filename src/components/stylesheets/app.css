@@ -30,11 +30,10 @@ body {
 .ActivePage {
     background-image: url('/background.svg');
     background-size: 100px 100px;
-    height: 100vh;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
-    max-width: 100vw;
+    width: 100vw;
   }
 
 .header {
@@ -51,6 +50,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: 15px;
     
 }
 
